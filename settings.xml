@@ -1,234 +1,131 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<settings xmlns="http://maven.apache.org/SETTINGS/1.1.0"
-
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-
-	xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.1.0 http://maven.apache.org/xsd/settings-1.1.0.xsd">
-
-
-
-	<pluginGroups>
-
-		<pluginGroup>org.sonarsource.scanner.maven</pluginGroup>
-
-	</pluginGroups>
-
-
-
-	<profiles>
-
-
-
-		<profile>
-
-			<id>sonar-dev</id>
-
-			<activation>
-
-				<activeByDefault>true</activeByDefault>
-
-			</activation>
-
-			<properties>
-
-				<!-- Optional URL to server. Default value is http://localhost:9000 -->
-
-				<sonar.host.url>http://skynet.sii.cl:9000</sonar.host.url>
-
-				<sonar.svn.username>calarcon.externo</sonar.svn.username>
-
-				<sonar.svn.password.secured>a1b2c3d4e5d8</sonar.svn.password.secured>
-
-			</properties>
-
-			<repositories />
-
-		</profile>
-
-
-
-
-
-		<profile>
-
-			<id>sonar-ui-dev</id>
-
-			<properties>
-
-				<sonar.sources>src/main/webapp</sonar.sources>
-
-				<sonar.exclusions>src/main/webapp/bower_components/**/*,src/main/webapp/node_modules/**/*,src/main/webapp/dist/**/*,src/main/webapp/WEB-INF/**,src/main/webapp/Gruntfile.js,.*,ivy/**,build/**</sonar.exclusions>
-
-				<sonar.sourceEncoding>UTF-8</sonar.sourceEncoding>
-
-				<sonar.javascript.file.suffixes>.js,.jsx</sonar.javascript.file.suffixes>
-
-			</properties>
-
-		</profile>
-
-
-
-		<profile>
-
-			<id>eap-llanquihue-deploy-properties</id>
-
-			<properties>
-
-				<eap.neg.deploy.host>llanquihuedesa4.sii.cl</eap.neg.deploy.host>
-
-				<eap.neg.deploy.port>9999</eap.neg.deploy.port>
-
-				<eap.neg.deploy.user>admin</eap.neg.deploy.user>
-
-				<eap.neg.deploy.password>desa2016.</eap.neg.deploy.password>
-
-
-
-				<eap.pre.deploy.host>llanquihuedesa4.sii.cl</eap.pre.deploy.host>
-
-				<eap.pre.deploy.port>10099</eap.pre.deploy.port>
-
-				<eap.pre.deploy.user>admin</eap.pre.deploy.user>
-
-				<eap.pre.deploy.password>desa2016.</eap.pre.deploy.password>
-
-
-
-			</properties>
-
-		</profile>
-
-
-
-		<profile>
-
-			<id>eap-localhost-deploy-properties</id>
-
-			<properties>
-
-				<eap.neg.deploy.host>localhost</eap.neg.deploy.host>
-
-				<eap.neg.deploy.port>8999</eap.neg.deploy.port>
-
-				<eap.neg.deploy.user>admin</eap.neg.deploy.user>
-
-				<eap.neg.deploy.password>desa123.</eap.neg.deploy.password>
-
-
-
-				<eap.pre.deploy.host>localhost</eap.pre.deploy.host>
-
-				<eap.pre.deploy.port>8999</eap.pre.deploy.port>
-
-				<eap.pre.deploy.user>admin</eap.pre.deploy.user>
-
-				<eap.pre.deploy.password>desa123.</eap.pre.deploy.password>
-
-			</properties>
-
-		</profile>
-
-		<!-- los profiles específicos para jdeveloper y service bus -->
-
-		<profile>
-
-			<id>nexus</id>
-
-			<repositories>
-				<repository>
-					<snapshots>
-						<enabled>true</enabled>
-					</snapshots>
-
-					<id>internal</id>
-					<name>internal</name>
-					<url>http://nexus.sii.cl:8081/repository/cl-sii-thirdparty/</url>
-				</repository>
-			</repositories>
-		</profile>
-
-		<profile>
-
-			<id>oracle-maven</id>
-			<properties>
-				<oracleHome>d:/opt/apps/Oracle/Middleware/Oracle_Home</oracleHome>
-				<serverId>internal</serverId>
-				<testOnly>false</testOnly>
-				<failOnError>false</failOnError>
-				<overwriteParent>true</overwriteParent>
-			</properties>
-		</profile>
-		<profile>
-
-			<id>osb-local</id>
-			<properties>
-				<oracleServerUrl>http://localhost:7101</oracleServerUrl>
-				<oracleUsername>weblogic</oracleUsername>
-				<oraclePassword>welcome1</oraclePassword>
-				<overwriteParent>true</overwriteParent>
-			</properties>
-		</profile>
-
-		<profile>
-			<id>osb-integracion</id>
-			<properties>
-				<oracleServerUrl>http://skynet:7001</oracleServerUrl>
-				<oracleUsername>weblogic</oracleUsername>
-				<oraclePassword>welcome1</oraclePassword>
-				<overwriteParent>true</overwriteParent>
-			</properties>
-		</profile>
-
-		<profile>
-
-			<id>osb-esta</id>
-
-			<properties>
-				<oracleServerUrl>http://elte01vsd1011:9001</oracleServerUrl>
-				<oracleUsername>weblogic</oracleUsername>
-				<oraclePassword>w3lc0m31</oraclePassword>
-				<overwriteParent>true</overwriteParent>
-			</properties>
-		</profile>
-
-		<profile>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
-			<repositories />
-		</profile>
-	</profiles>
-
-	<activeProfiles>
-
-		<!--make the profile active all the time -->
-		<activeProfile>nexus</activeProfile>
-		<activeProfile>oracle-maven</activeProfile>
-
-	</activeProfiles>
-
-	<servers>
-		<server>
-			<id>nexus-snapshots</id>
-			<username>admin</username>
-			<password>admin123</password>
-		</server>
-		<server>
-			<id>nexus-releases</id>
-			<username>admin</username>
-			<password>admin123</password>
-		</server>
-		<server>
-			<id>internal</id>
-			<username>admin</username>
-			<password>admin123</password>
-		</server>
-		<server>
-			<id>nexus-thirdparty</id>
-			<username>admin</username>
-			<password>admin123</password>
-		</server>
-	</servers>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.1.0 http://maven.apache.org/xsd/settings-1.1.0.xsd">
+    <pluginGroups>
+        <pluginGroup>org.sonarsource.scanner.maven</pluginGroup>
+    </pluginGroups>
+    <profiles>
+        <profile>
+            <id>sonar-dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <!-- Optional URL to server. Default value is http://localhost:9000 -->
+                <sonar.host.url>http://skynet.sii.cl:9000</sonar.host.url>
+                <sonar.svn.username>calarcon.externo</sonar.svn.username>
+                <sonar.svn.password.secured>a1b2c3d4e5d8</sonar.svn.password.secured>
+            </properties>
+            <repositories />
+        </profile>
+        <profile>
+            <id>sonar-ui-dev</id>
+            <properties>
+                <sonar.sources>src/main/webapp</sonar.sources>
+                <sonar.exclusions>src/main/webapp/bower_components/**/*,src/main/webapp/node_modules/**/*,src/main/webapp/dist/**/*,src/main/webapp/WEB-INF/**,src/main/webapp/Gruntfile.js,.*,ivy/**,build/**</sonar.exclusions>
+                <sonar.sourceEncoding>UTF-8</sonar.sourceEncoding>
+                <sonar.javascript.file.suffixes>.js,.jsx</sonar.javascript.file.suffixes>
+            </properties>
+        </profile>
+        <profile>
+            <id>eap-llanquihue-deploy-properties</id>
+            <properties>
+                <eap.neg.deploy.host>llanquihuedesa4.sii.cl</eap.neg.deploy.host>
+                <eap.neg.deploy.port>9999</eap.neg.deploy.port>
+                <eap.neg.deploy.user>admin</eap.neg.deploy.user>
+                <eap.neg.deploy.password>desa2016.</eap.neg.deploy.password>
+                <eap.pre.deploy.host>llanquihuedesa4.sii.cl</eap.pre.deploy.host>
+                <eap.pre.deploy.port>10099</eap.pre.deploy.port>
+                <eap.pre.deploy.user>admin</eap.pre.deploy.user>
+                <eap.pre.deploy.password>desa2016.</eap.pre.deploy.password>
+            </properties>
+        </profile>
+        <profile>
+            <id>eap-localhost-deploy-properties</id>
+            <properties>
+                <eap.neg.deploy.host>localhost</eap.neg.deploy.host>
+                <eap.neg.deploy.port>8999</eap.neg.deploy.port>
+                <eap.neg.deploy.user>admin</eap.neg.deploy.user>
+                <eap.neg.deploy.password>desa123.</eap.neg.deploy.password>
+                <eap.pre.deploy.host>localhost</eap.pre.deploy.host>
+                <eap.pre.deploy.port>8999</eap.pre.deploy.port>
+                <eap.pre.deploy.user>admin</eap.pre.deploy.user>
+                <eap.pre.deploy.password>desa123.</eap.pre.deploy.password>
+            </properties>
+        </profile>
+        <!-- los profiles específicos para jdeveloper y service bus -->
+        <profile>
+            <id>nexus</id>
+            <repositories>
+                <repository>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                    <id>internal</id>
+                    <name>internal</name>
+                    <url>http://nexus.sii.cl:8081/repository/thirdparty/</url>
+                </repository>
+            </repositories>
+        </profile>
+        <profile>
+            <id>oracle-maven</id>
+            <properties>
+                <oracleHome>/home/developer/Oracle/Middleware/Oracle_Home</oracleHome>
+                <serverId>internal</serverId>
+                <testOnly>false</testOnly>
+                <failOnError>false</failOnError>
+                <overwriteParent>true</overwriteParent>
+            </properties>
+        </profile>
+        <profile>
+            <id>osb-local</id>
+            <properties>
+                <oracleServerUrl>http://localhost:7101</oracleServerUrl>
+                <oracleUsername>weblogic</oracleUsername>
+                <oraclePassword>welcome1</oraclePassword>
+                <overwriteParent>true</overwriteParent>
+            </properties>
+        </profile>
+
+        <profile>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <repositories />
+        </profile>
+    </profiles>
+    <activeProfiles>
+        <!--make the profile active all the time -->
+        <activeProfile>nexus</activeProfile>
+        <activeProfile>oracle-maven</activeProfile>
+    </activeProfiles>
+    <servers>
+        <!-- credenciales para distintos repositorios nexus -->
+        <server>
+            <id>nexus-snapshots</id>
+            <username>admin</username>
+            <password>admin123</password>
+        </server>
+        <server>
+            <id>nexus-releases</id>
+            <username>admin</username>
+            <password>admin123</password>
+        </server>
+        <server>
+            <id>internal</id>
+            <username>admin</username>
+            <password>admin123</password>
+        </server>
+        <server>
+            <id>nexus-thirdparty</id>
+            <username>admin</username>
+            <password>admin123</password>
+        </server>
+        <!-- para las pruebas se usa un tomcat, nuestro contenedor -->
+        <server>
+            <id>TomcatServer</id>
+            <username>admin</username>
+            <password>admin</password>
+        </server>
+
+    </servers>
 </settings>
